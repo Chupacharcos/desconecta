@@ -1,0 +1,9 @@
+# Desconecta — deps (sobre el venv compartido de /var/www/chatbot/venv)
+fastapi
+uvicorn
+httpx
+numpy
+pandas
+scikit-learn
+xgboost>=2.0
+shap>=0.44
