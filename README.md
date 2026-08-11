@@ -15,6 +15,34 @@ Desconecta es la capa de inteligencia que les falta:
 - **Puerto:** 8009 — `desconecta.service` (lazy)
 - **Stack:** Python · FastAPI · XGBoost · SHAP · scikit-learn · pandas · Groq (Llama 3.3 70B)
 
+<!-- LOOP-MAP:START (generado por `php artisan project:loop readme` — no editar a mano) -->
+
+## El bucle que cierra
+
+<p align="center"><img src="https://adrianmoreno-dev.com/bucle/desconecta.svg" alt="Mapa del bucle de Desconecta — Bienestar digital con IA" width="900"></p>
+
+**Para** quien quiere bajar su tiempo de pantalla sin muros · **Cada día**
+
+| Etapa | Qué pasa | Quién |
+|---|---|---|
+| **1. Disparador** | Vuelvo a pasarme del tiempo de pantalla y el bloqueador solo sabe ponerme un muro. | persona |
+| **2. Acción** | Predice el uso del día, estima a qué hora cruzaré el límite y calcula el riesgo de atracón con sus disparadores. | software |
+| **3. Medición** | La hora estimada del cruce, el score de riesgo y qué lo está empujando, con SHAP. | software |
+| **4. Decisión** | Decido si acepto lo que propone el coach, con el límite bajando poco a poco. | persona |
+
+### Lo que no hace
+
+- No bloquea nada: es la capa que decide cuándo merece la pena intervenir, no el muro.
+- Las métricas salen de datos sintéticos calibrados, no de usuarios reales.
+- No mide el uso por su cuenta: recibe los datos de la app que lo integra.
+
+### Por qué está construido así
+
+- **Límite con glide-path** en vez de un límite fijo de minutos — Un número fijo se salta el primer día malo y ya no vuelves. Bajar poco a poco hacia el objetivo aguanta el mes.
+- **Explicar el riesgo con SHAP** en vez de dar solo el número del score — Un riesgo sin motivo no cambia el comportamiento. Saber qué lo empuja permite actuar sobre esa app o esa hora.
+
+<!-- LOOP-MAP:END -->
+
 ## Métricas (honestas, datos sintéticos calibrados)
 
 | Modelo | Métrica | Valor |
