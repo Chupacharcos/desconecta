@@ -32,7 +32,12 @@ OCIO_CATS = {"social", "video", "juegos"}  # categorías típicamente limitadas
 
 # ── Groq (coach LLM) ────────────────────────────────────────────────────────
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODELS = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+# 2026-09-01: Groq retiró la familia Llama (404 model_not_found) y la demo
+# respondía error en cada consulta. Se usan modelos DISTINTOS a los de los
+# agentes de NeuralOps (openai/gpt-oss-*): el límite de tokens/minuto es por
+# modelo, así que separarlos impide que una tarea de fondo deje sin cuota a un
+# visitante. qwen3.6 queda fuera: emite trazas <think> y rompe el JSON.
+GROQ_MODELS = ["qwen/qwen3.8-27b", "groq/compound-mini"]
 
 
 def load_groq_key() -> str:
