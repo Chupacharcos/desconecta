@@ -37,7 +37,14 @@ GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 # agentes de NeuralOps (openai/gpt-oss-*): el límite de tokens/minuto es por
 # modelo, así que separarlos impide que una tarea de fondo deje sin cuota a un
 # visitante. qwen3.6 queda fuera: emite trazas <think> y rompe el JSON.
-GROQ_MODELS = ["qwen/qwen3.8-27b", "groq/compound-mini"]
+# 2026-09-22: el segundo eslabón era `groq/compound-mini`, que NO existe en
+# el catálogo de la cuenta (404 model_not_found). Desde el barrido del
+# 2026-09-01 —cuando Groq retiró la familia Llama— esta cadena no tenía
+# respaldo real: al primer 429 del primario, la petición fallaba igual.
+# gpt-oss-20b sí existe y es el modelo del chatbot del portfolio: otra demo,
+# no un agente de fondo, así que en el peor caso dos demos comparten un
+# minuto. Lo vigila neuralops/tests/test_llm_aislamiento.py.
+GROQ_MODELS = ["qwen/qwen3.8-27b", "openai/gpt-oss-20b"]
 
 
 def load_groq_key() -> str:
